@@ -1,0 +1,18 @@
+name: "Aptly upload"
+description: "Upload Debian packages to an Aptly instance"
+inputs:
+  path:
+    description: 'Local path to directory of .deb packages to upload'
+    required: true
+  upload_path:
+    description: 'Upload path (:dir) on Aptly instance. Defaults to <owner>_<repo>.'
+    required: false
+  api_url:
+    description: 'URL of Aptly instance API root (without api/)'
+    required: true
+  api_auth:
+    description: 'Authentication credentials for Aptly instance (<username>:<password>)'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

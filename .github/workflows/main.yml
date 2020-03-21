@@ -14,7 +14,16 @@ jobs:
       run: make
     - name: Test
       run: make test
-    - name: Install Packaging dependencies
+    - name: Install packaging dependencies
       run: sudo apt-get -qq --no-install-recommends install debhelper devscripts lintian fakeroot
-    - name: Package
-      run: debuild -us -uc
+    - name: Build package
+      run: |
+        debuild -us -uc
+        mkdir ./debs
+        cp ../*.deb ./debs
+    - name: Upload package
+      uses: ./.github/actions/aptly-upload-action
+      with:
+        path: ./debs/
+        api_url: ${{ secrets.APTLY_URL }}
+        api_auth: ${{ secrets.APTLY_AUTH }}
