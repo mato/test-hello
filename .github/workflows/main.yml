@@ -12,3 +12,5 @@ jobs:
       run: make
     - name: Test
       run: make test
+    - name: Package
+      run: debuild -us -uc
