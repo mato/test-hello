@@ -1,0 +1,13 @@
+Source: test-hello
+Section: misc
+Priority: optional
+Maintainer: Martin Lucina <martin@lucina.net>
+Build-Depends: debhelper (>= 11)
+Standards-Version: 4.1.3
+Homepage: https://github.com/mato/test-hello
+
+Package: test-hello
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Yet another Hello World application
+ This is yet another Hello World application, for experiments.
