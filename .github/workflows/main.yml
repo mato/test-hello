@@ -12,5 +12,7 @@ jobs:
       run: make
     - name: Test
       run: make test
+    - name: Install Packaging dependencies
+      run: sudo apt-get install debhelper devscripts lintian fakeroot
     - name: Package
       run: debuild -us -uc
