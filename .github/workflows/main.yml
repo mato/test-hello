@@ -20,6 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+    - name: Dump Github context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
     - uses: actions/checkout@v2
     - name: Install dependencies
       run: sudo apt-get -qq --no-install-recommends install debhelper devscripts lintian fakeroot
@@ -34,6 +38,7 @@ jobs:
         name: debs
         path: ./debs/
     - name: Upload package to aptly
+      # if: github.event_name == 'pull_request' ...
       uses: ./.github/actions/aptly-upload-action
       with:
         path: ./debs/
