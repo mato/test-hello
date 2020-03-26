@@ -32,13 +32,13 @@ jobs:
         debuild -us -uc
         mkdir ./debs
         cp ../*.deb ./debs
-    - name: Upload package as artifact
+    - name: Upload package artifact
       uses: actions/upload-artifact@v1
       with:
         name: debs
         path: ./debs/
     - name: Upload package to aptly
-      # if: github.event_name == 'pull_request' .....
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       uses: ./.github/actions/aptly-upload-action
       with:
         path: ./debs/
