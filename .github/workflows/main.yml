@@ -38,7 +38,7 @@ jobs:
         name: debs
         path: ./debs/
     - name: Upload package to aptly
-      # if: github.event_name == 'pull_request' ...
+      # if: github.event_name == 'pull_request' ....
       uses: ./.github/actions/aptly-upload-action
       with:
         path: ./debs/
