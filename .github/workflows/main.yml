@@ -28,7 +28,12 @@ jobs:
         debuild -us -uc
         mkdir ./debs
         cp ../*.deb ./debs
-    - name: Upload package
+    - name: Upload package as artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: debs
+        path: ./debs/
+    - name: Upload package to aptly
       uses: ./.github/actions/aptly-upload-action
       with:
         path: ./debs/
